@@ -6,6 +6,7 @@ resource "azurerm_resource_group" "veenu_rg" {
 }
 
 resource "azurerm_virtual_network" "veenu_vnets" {
+  depends_on = [ azurerm_resource_group.veenu_rg ]
   for_each            = var.vnets
   name                = each.value.name
   location            = each.value.location
