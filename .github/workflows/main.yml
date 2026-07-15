@@ -21,17 +21,22 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
+        
       - name: Checkout Code
         uses: actions/checkout@v6
+       
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform init
+        working-directory: ./Parent Module
         run: terraform init
 
       - name: Plan
+        working-directory: ./Parent Module
         run: terraform plan
 
       - name: Apply
+        working-directory: ./Parent Module
         run: terraform apply -auto-approve
